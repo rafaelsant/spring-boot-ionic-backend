@@ -11,8 +11,13 @@ import com.rafaelsantiago.cursomc.domain.Categoria;
 import com.rafaelsantiago.cursomc.domain.Cidade;
 import com.rafaelsantiago.cursomc.domain.Estado;
 import com.rafaelsantiago.cursomc.domain.Produto;
+import com.rafaelsantiago.cursomc.domain.enums.Cliente;
+import com.rafaelsantiago.cursomc.domain.enums.Endereco;
+import com.rafaelsantiago.cursomc.domain.enums.TipoCliente;
 import com.rafaelsantiago.cursomc.repositories.CategoriaRepository;
 import com.rafaelsantiago.cursomc.repositories.CidadeRepository;
+import com.rafaelsantiago.cursomc.repositories.ClienteRepository;
+import com.rafaelsantiago.cursomc.repositories.EnderecoRepository;
 import com.rafaelsantiago.cursomc.repositories.EstadoRepository;
 import com.rafaelsantiago.cursomc.repositories.ProdutoRepository;
 
@@ -27,6 +32,10 @@ public class CursomcApplication implements CommandLineRunner {
 	private CidadeRepository cidRep;
 	@Autowired
 	private EstadoRepository estRep;
+	@Autowired
+	private EnderecoRepository endRep;
+	@Autowired
+	private ClienteRepository cliRep;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -48,6 +57,14 @@ public class CursomcApplication implements CommandLineRunner {
 		Cidade c2 = new Cidade(null,"São Paulo",est2);
 		Cidade c3 = new Cidade(null,"Campinas",est2);
 		
+		Cliente cli1 = new Cliente(null,"Maria Silva","maria@gmail.com","11111111111",TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
+		
+		Endereco e1 = new Endereco(null,"Rua Flores","300","Apto 203","Jardim","38777034",cli1,c1);
+		Endereco e2 = new Endereco(null,"Av Matos","105","Sala 800","Centro","38777012",cli1,c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		
 		System.out.println("*****************************************************************");
 		System.out.println(est1.getCidades());
 		
@@ -67,6 +84,8 @@ public class CursomcApplication implements CommandLineRunner {
 		prodRep.saveAll(Arrays.asList(p1,p2,p3));
 		estRep.saveAll(Arrays.asList(est1,est2));
 		cidRep.saveAll(Arrays.asList(c1,c2,c3));
+		cliRep.saveAll(Arrays.asList(cli1));
+		endRep.saveAll(Arrays.asList(e1,e2));
 	}
 
 }
