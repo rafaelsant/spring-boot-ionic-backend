@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.rafaelsantiago.cursomc.domain.Categoria;
 import com.rafaelsantiago.cursomc.domain.Cidade;
+import com.rafaelsantiago.cursomc.domain.Cliente;
+import com.rafaelsantiago.cursomc.domain.Endereco;
 import com.rafaelsantiago.cursomc.domain.Estado;
 import com.rafaelsantiago.cursomc.domain.Produto;
-import com.rafaelsantiago.cursomc.domain.enums.Cliente;
-import com.rafaelsantiago.cursomc.domain.enums.Endereco;
 import com.rafaelsantiago.cursomc.domain.enums.TipoCliente;
 import com.rafaelsantiago.cursomc.repositories.CategoriaRepository;
 import com.rafaelsantiago.cursomc.repositories.CidadeRepository;
